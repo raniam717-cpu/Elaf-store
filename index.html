@@ -1,13 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elaf Accessories | متجر الإكسسوارات</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+
     <style>
         * {
             box-sizing: border-box;
@@ -133,7 +135,8 @@
             gap: 8px;
         }
 
-        .input-group input, .input-group select {
+        .input-group input,
+        .input-group select {
             padding: 10px 15px;
             border: 1px solid #F0EAE1;
             border-radius: 8px;
@@ -274,7 +277,8 @@
             gap: 15px;
         }
 
-        .side-menu-links li a, .side-menu-links button {
+        .side-menu-links li a,
+        .side-menu-links button {
             text-decoration: none;
             color: #2C2C2C;
             font-size: 16px;
@@ -290,7 +294,8 @@
             font-family: 'Tajawal', sans-serif;
         }
 
-        .side-menu-links li a:hover, .side-menu-links button:hover {
+        .side-menu-links li a:hover,
+        .side-menu-links button:hover {
             color: #C5A059;
         }
 
@@ -627,45 +632,58 @@
             padding-top: 15px;
         }
     </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
 
     <div class="overlay" id="overlay"></div>
 
+    <!-- Search Modal -->
     <div class="modal-box" id="searchModal">
         <div class="modal-header">
             <h3>ابحثي في Elaf accessories</h3>
             <button class="close-modal-btn" id="closeSearch">✕</button>
         </div>
+
         <div class="input-group">
             <input type="text" placeholder="اكتبي اسم القطعة للبحث..." id="searchInput">
             <button class="btn-submit" id="searchBtn">بحث</button>
         </div>
     </div>
 
+    <!-- Admin Login -->
     <div class="modal-box" id="authModal">
         <div class="modal-header">
             <h3>🔐 تسجيل دخول لوحة التحكم</h3>
             <button class="close-modal-btn" id="closeAuth">✕</button>
         </div>
+
         <div class="input-group">
             <label style="font-size: 13px; color: #666;">البريد الإلكتروني</label>
             <input type="email" id="adminEmailInput" placeholder="أدخل بريد المدير" autocomplete="username">
+
             <label style="font-size: 13px; color: #666;">كلمة المرور</label>
             <input type="password" id="adminPasswordInput" placeholder="أدخل كلمة المرور" autocomplete="current-password">
+
             <button class="btn-submit" id="submitPasswordBtn">دخول</button>
+
             <p id="adminLoginMessage" style="font-size:12px;color:#777;text-align:center;margin-top:8px;"></p>
         </div>
     </div>
 
+    <!-- Admin Product Modal -->
     <div class="modal-box" id="adminModal">
         <div class="modal-header">
             <h3>✨ لوحة التحكم: إضافة منتج جديد</h3>
             <button class="close-modal-btn" id="closeAdmin">✕</button>
         </div>
+
         <div class="input-group">
+
             <label style="font-size: 13px;">اختر القسم:</label>
+
             <select id="newCategory">
                 <option value="السلاسل">✨ السلاسل</option>
                 <option value="الخواتم">💍 الخواتم</option>
@@ -675,64 +693,84 @@
 
             <label style="font-size: 13px;">اسم المنتج:</label>
             <input type="text" id="newTitle" placeholder="مثال: سلسلة الذهب الخالص">
-            
+
             <label style="font-size: 13px;">السعر (د.ل):</label>
             <input type="number" id="newPrice" placeholder="مثال: 95">
-            
+
             <label style="font-size: 13px;">صورة المنتج:</label>
-<input type="file" id="newImgFile" accept="image/*">
-        
+            <input type="file" id="newImgFile" accept="image/*">
 
             <button class="btn-submit" id="saveProductBtn">إضافة المنتج للمتجر</button>
         </div>
     </div>
 
+    <!-- Shop Modal -->
     <div class="shop-modal" id="shopModal">
         <div class="modal-header">
             <h3 id="shopModalTitle">✨ جميع تشكيلات المتجر</h3>
             <button class="close-modal-btn" id="closeShopModal">✕</button>
         </div>
+
         <div class="shop-modal-body" id="allShopProductsContainer"></div>
     </div>
 
+    <!-- Shipping Modal -->
     <div class="info-modal" id="shippingModal">
         <div class="modal-header">
             <h3>📦 سياسة التوصيل والشحن</h3>
             <button class="close-modal-btn" id="closeShipping">✕</button>
         </div>
+
         <div class="info-modal-body">
             <h4>خدمة التوصيل السريع</h4>
             <p>نقوم بتوصيل الطلبات لكافة المدن والمناطق بسرعة وبأمان تام.</p>
-            
+
             <h4>رسوم الشحن</h4>
-            <p>• الشحن مجاني للطلبات التي تفوق قيمتها 150 د.ل.<br>• يتم احتساب رسوم توصيل رمزية حسب المنطقة للطلبات الأقل من ذلك.</p>
+            <p>
+                • الشحن مجاني للطلبات التي تفوق قيمتها 150 د.ل.<br>
+                • يتم احتساب رسوم توصيل رمزية حسب المنطقة للطلبات الأقل من ذلك.
+            </p>
 
             <h4>تغليف الهدايا</h4>
             <p>جميع طلبيات الإكسسوارات تأتي مع تغليف إهداء فاخر مجاناً لتناسب لحظاتكم المميزة.</p>
         </div>
     </div>
 
+    <!-- Contact Modal -->
     <div class="info-modal" id="contactModal">
         <div class="modal-header">
             <h3>📞 تواصل معنا</h3>
             <button class="close-modal-btn" id="closeContact">✕</button>
         </div>
+
         <div class="info-modal-body">
             <h4>نحن هنا دائماً لخدمتكم</h4>
-            <p>يسعدنا الإجابة عن استفساراتكم ومساعدتكم في اختيار قطعكم المفضلة عبر وسائل التواصل التالية:</p>
-            
+
+            <p>
+                يسعدنا الإجابة عن استفساراتكم ومساعدتكم في اختيار قطعكم المفضلة عبر وسائل التواصل التالية:
+            </p>
+
             <h4 style="margin-top: 15px;">واتساب المبيعات والدعم</h4>
-            <p>يمكنكم مراسلتنا مباشرة عبر الواتساب لتأكيد الطلبات أو الاستفسار عن القطع.</p>
-            
-            <button class="btn-whatsapp" style="margin-top: 15px;" onclick="window.open('https://api.whatsapp.com/send?phone=218910836521', '_blank')">راسلنا عبر واتساب 💬</button>
+
+            <p>
+                يمكنكم مراسلتنا مباشرة عبر الواتساب لتأكيد الطلبات أو الاستفسار عن القطع.
+            </p>
+
+            <button class="btn-whatsapp" style="margin-top: 15px;"
+                onclick="window.open('https://api.whatsapp.com/send?phone=218910836521', '_blank')">
+                راسلنا عبر واتساب 💬
+            </button>
         </div>
     </div>
 
+    <!-- Side Menu -->
     <div class="side-menu" id="sideMenu">
+
         <div class="side-menu-header">
             <h3>Elaf accessories</h3>
             <button class="close-menu" id="closeMenu">✕</button>
         </div>
+
         <ul class="side-menu-links">
             <li><a href="#" id="menuHome">🏠 الرئيسية</a></li>
             <li><a href="#" id="menuAllShop">✨ جميع التشكيلات</a></li>
@@ -746,59 +784,93 @@
         </ul>
     </div>
 
+    <!-- Cart -->
     <div class="cart-drawer" id="cartDrawer">
+
         <div class="cart-header">
             <h3>سلة المشتريات 🛒</h3>
             <button class="close-cart" id="closeCart">✕</button>
         </div>
+
         <div class="cart-items" id="cartItemsContainer">
-            <p style="text-align: center; color: #888; font-size: 13px; margin-top: 20px;">السلة فارغة حالياً</p>
+            <p style="text-align: center; color: #888; font-size: 13px; margin-top: 20px;">
+                السلة فارغة حالياً
+            </p>
         </div>
+
         <div class="cart-footer">
             <div class="cart-total">
                 <span>المجموع الكلي:</span>
                 <span id="cartTotalPrice">0 د.ل</span>
             </div>
-            <button class="btn-whatsapp" id="checkoutWhatsapp">إتمام الطلب عبر واتساب 💬</button>
+
+            <button class="btn-whatsapp" id="checkoutWhatsapp">
+                إتمام الطلب عبر واتساب 💬
+            </button>
         </div>
     </div>
 
+    <!-- Announcement -->
     <div class="announcement-bar">
         شحن مجاني للطلبات الأكثر من 150 د.ل | تغليف إهداء فاخر
     </div>
 
+    <!-- Header -->
     <header>
         <button class="menu-toggle" id="menuToggle">☰</button>
+
         <a href="#" class="logo">Elaf accessories</a>
+
         <div class="header-icons">
             <span id="searchToggle">🔍</span>
-            <span id="cartToggle">🛒<span class="cart-badge" id="cartBadge">0</span></span>
+            <span id="cartToggle">
+                🛒
+                <span class="cart-badge" id="cartBadge">0</span>
+            </span>
         </div>
     </header>
 
+    <!-- Hero -->
     <section class="hero">
         <div class="hero-subtitle">NEW COLLECTION</div>
-        <h1>تأنّقي بالتفاصيل التي<br>تكتمل بها إشراقتك</h1>
-        <p>تشكيلة راقية ومختارة بعناية من السلاسل والخواتم المصممة لتضيف لمسة أنثوية ساحرة.</p>
-        <button class="btn-primary" id="shopNowBtn">تسوقي التشكيلة الجديدة</button>
+
+        <h1>
+            تأنّقي بالتفاصيل التي<br>
+            تكتمل بها إشراقتك
+        </h1>
+
+        <p>
+            تشكيلة راقية ومختارة بعناية من السلاسل والخواتم المصممة لتضيف لمسة أنثوية ساحرة.
+        </p>
+
+        <button class="btn-primary" id="shopNowBtn">
+            تسوقي التشكيلة الجديدة
+        </button>
     </section>
 
+    <!-- Featured Banner -->
     <div class="featured-banner">
         <div class="featured-content">
             <span class="featured-tag">حصرياً في المتجر</span>
+
             <h2>فخامة تتحدث عن نفسها</h2>
-            <p>اكتشفي تشكيلة الخواتم والأطقم المصممة لتناسب ذوقك الرفيع</p>
+
+            <p>
+                اكتشفي تشكيلة الخواتم والأطقم المصممة لتناسب ذوقك الرفيع
+            </p>
         </div>
     </div>
 
     <h2 class="section-title">الأكثر مبيعاً</h2>
-    
+
     <div class="products-grid" id="productsGrid"></div>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-logo">Elaf accessories</div>
+
         <p>إكسسوارات مصممة بكل حب لترافق لحظاتك الخاصة.</p>
-        
+
         <ul class="footer-links">
             <li><a id="footerShipping">سياسة التوصيل</a></li>
             <li><a id="footerContact">تواصل معنا</a></li>
@@ -811,91 +883,197 @@
 
     <script>
 
-        // Elaf Store - Supabase integration v1
+        // ==========================================
+        // Elaf Store - Supabase Integration
+        // ==========================================
+
         const SUPABASE_URL = "https://qbdtypudwqhlljngaxkb.supabase.co";
+
         const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_noaIV7KoyJJpOdYlJzmsug_211DxwpW";
-        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+        const supabaseClient = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+        // ==========================================
+        // Default Products
+        // ==========================================
 
         const defaultProducts = [
-            { title: "سلسلة اللؤلؤ الملكية", price: 85, img: "Nicl.jpg", category: "السلاسل" },
-            { title: "خاتم الزركون الناعم", price: 45, img: "Ring.jpg", category: "الخواتم" },
-            { title: "طقم خواتم متناسقة", price: 110, img: "Rings.jpg", category: "الخواتم" },
-            { title: "أقراط الماس براقة", price: 65, img: "Ear.jpg", category: "الأقراط" }
+            {
+                title: "سلسلة اللؤلؤ الملكية",
+                price: 85,
+                img: "Nicl.jpg",
+                category: "السلاسل"
+            },
+            {
+                title: "خاتم الزركون الناعم",
+                price: 45,
+                img: "Ring.jpg",
+                category: "الخواتم"
+            },
+            {
+                title: "طقم خواتم متناسقة",
+                price: 110,
+                img: "Rings.jpg",
+                category: "الخواتم"
+            },
+            {
+                title: "أقراط الماس براقة",
+                price: 65,
+                img: "Ear.jpg",
+                category: "الأقراط"
+            }
         ];
 
         let products = [...defaultProducts];
+
         let cart = [];
+
         let currentAdmin = null;
+
+        // ==========================================
+        // DOM Elements
+        // ==========================================
 
         const menuToggle = document.getElementById('menuToggle');
         const sideMenu = document.getElementById('sideMenu');
         const closeMenu = document.getElementById('closeMenu');
+
         const searchToggle = document.getElementById('searchToggle');
         const searchModal = document.getElementById('searchModal');
         const closeSearch = document.getElementById('closeSearch');
+
         const authModal = document.getElementById('authModal');
         const openAdminBtn = document.getElementById('openAdminBtn');
         const closeAuth = document.getElementById('closeAuth');
+
         const submitPasswordBtn = document.getElementById('submitPasswordBtn');
+
         const adminPasswordInput = document.getElementById('adminPasswordInput');
         const adminEmailInput = document.getElementById('adminEmailInput');
+
         const adminLoginMessage = document.getElementById('adminLoginMessage');
+
         const adminModal = document.getElementById('adminModal');
         const closeAdmin = document.getElementById('closeAdmin');
+
         const saveProductBtn = document.getElementById('saveProductBtn');
+
         const shopNowBtn = document.getElementById('shopNowBtn');
         const shopModal = document.getElementById('shopModal');
         const closeShopModal = document.getElementById('closeShopModal');
+
         const shopModalTitle = document.getElementById('shopModalTitle');
+
         const shippingModal = document.getElementById('shippingModal');
         const closeShipping = document.getElementById('closeShipping');
+
         const contactModal = document.getElementById('contactModal');
         const closeContact = document.getElementById('closeContact');
+
         const cartToggle = document.getElementById('cartToggle');
         const cartDrawer = document.getElementById('cartDrawer');
         const closeCart = document.getElementById('closeCart');
+
         const overlay = document.getElementById('overlay');
 
+        // ==========================================
+        // HTML Security
+        // ==========================================
+
         function escapeHtml(value) {
+
             return String(value ?? '').replace(/[&<>"']/g, ch => ({
-                '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
             }[ch]));
+
         }
 
+        // ==========================================
+        // Render Products
+        // ==========================================
+
         function renderProducts(categoryFilter = null) {
+
             const grid = document.getElementById('productsGrid');
+
             const shopContainer = document.getElementById('allShopProductsContainer');
+
             const filteredProducts = categoryFilter
                 ? products.filter(p => p.category === categoryFilter)
                 : products;
 
             const cards = filteredProducts.map(p => `
-                <div class="product-card" data-title="${escapeHtml(p.title)}" data-price="${Number(p.price)}" data-img="${escapeHtml(p.img)}">
+
+                <div class="product-card"
+                    data-title="${escapeHtml(p.title)}"
+                    data-price="${Number(p.price)}"
+                    data-img="${escapeHtml(p.img)}">
+
                     <div class="product-image-holder">
-                        <img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.title)}" loading="lazy">
+                        <img
+                            src="${escapeHtml(p.img)}"
+                            alt="${escapeHtml(p.title)}"
+                            loading="lazy">
                     </div>
+
                     <div class="product-info">
-                        <div class="product-title">${escapeHtml(p.title)}</div>
-                        <div class="product-price">${Number(p.price)} د.ل</div>
-                        <button class="btn-add-cart">إضافة للسلة 🛒</button>
+
+                        <div class="product-title">
+                            ${escapeHtml(p.title)}
+                        </div>
+
+                        <div class="product-price">
+                            ${Number(p.price)} د.ل
+                        </div>
+
+                        <button class="btn-add-cart">
+                            إضافة للسلة 🛒
+                        </button>
+
                     </div>
                 </div>
+
             `).join('');
 
             if (categoryFilter) {
+
                 shopModalTitle.textContent = `✨ تشكيلة ${categoryFilter}`;
-                shopContainer.innerHTML = cards || '<p style="padding:20px;text-align:center">لا توجد منتجات في هذا القسم حالياً.</p>';
+
+                shopContainer.innerHTML = cards ||
+                    '<p style="padding:20px;text-align:center">لا توجد منتجات في هذا القسم حالياً.</p>';
+
                 shopModal.classList.add('open');
+
                 overlay.classList.add('active');
+
             } else {
-                grid.innerHTML = cards || '<p style="padding:20px;text-align:center">سيتم عرض المنتجات هنا قريباً.</p>';
+
+                grid.innerHTML = cards ||
+                    '<p style="padding:20px;text-align:center">سيتم عرض المنتجات هنا قريباً.</p>';
+
                 shopContainer.innerHTML = cards;
+
             }
+
             initCartEvents();
+
         }
 
+        // ==========================================
+        // Load Products From Supabase
+        // ==========================================
+
         async function loadProductsFromSupabase() {
+
             try {
+
                 const { data, error } = await supabaseClient
                     .from('products')
                     .select('id,name,description,price,image_url,stock,categories(name)')
@@ -903,242 +1081,775 @@
                     .order('created_at', { ascending: false });
 
                 if (error) throw error;
+
                 if (Array.isArray(data) && data.length) {
+
                     products = data.map(p => ({
+
                         id: p.id,
+
                         title: p.name,
+
                         price: Number(p.price),
+
                         img: p.image_url || '',
+
                         category: p.categories?.name || '',
+
                         description: p.description || '',
+
                         stock: p.stock
+
                     }));
+
                 } else {
-                    // Keep the original demo products visible until the initial catalog is imported.
+
                     products = [...defaultProducts];
+
                 }
+
                 renderProducts(null);
+
             } catch (error) {
+
                 console.error('Supabase products load failed:', error);
+
                 products = [...defaultProducts];
+
                 renderProducts(null);
+
             }
+
         }
+
+        // ==========================================
+        // Categories
+        // ==========================================
 
         window.openCategory = function(categoryName) {
+
             sideMenu.classList.remove('open');
+
             renderProducts(categoryName);
+
         };
 
-        menuToggle.addEventListener('click', () => { sideMenu.classList.add('open'); overlay.classList.add('active'); });
-        closeMenu.addEventListener('click', () => { sideMenu.classList.remove('open'); overlay.classList.remove('active'); });
-        searchToggle.addEventListener('click', () => { searchModal.classList.add('open'); overlay.classList.add('active'); });
-        closeSearch.addEventListener('click', () => { searchModal.classList.remove('open'); overlay.classList.remove('active'); });
+        // ==========================================
+        // Menu Events
+        // ==========================================
+
+        menuToggle.addEventListener('click', () => {
+
+            sideMenu.classList.add('open');
+
+            overlay.classList.add('active');
+
+        });
+
+        closeMenu.addEventListener('click', () => {
+
+            sideMenu.classList.remove('open');
+
+            overlay.classList.remove('active');
+
+        });
+
+        // ==========================================
+        // Search Events
+        // ==========================================
+
+        searchToggle.addEventListener('click', () => {
+
+            searchModal.classList.add('open');
+
+            overlay.classList.add('active');
+
+        });
+
+        closeSearch.addEventListener('click', () => {
+
+            searchModal.classList.remove('open');
+
+            overlay.classList.remove('active');
+
+        });
 
         document.getElementById('searchBtn').addEventListener('click', () => {
+
             const term = document.getElementById('searchInput').value.trim().toLowerCase();
-            const matches = products.filter(p => p.title.toLowerCase().includes(term));
+
+            const matches = products.filter(p =>
+                p.title.toLowerCase().includes(term)
+            );
+
             document.getElementById('productsGrid').innerHTML = matches.map(p => `
-                <div class="product-card" data-title="${escapeHtml(p.title)}" data-price="${Number(p.price)}" data-img="${escapeHtml(p.img)}">
-                    <div class="product-image-holder"><img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.title)}"></div>
-                    <div class="product-info"><div class="product-title">${escapeHtml(p.title)}</div>
-                    <div class="product-price">${Number(p.price)} د.ل</div><button class="btn-add-cart">إضافة للسلة 🛒</button></div>
-                </div>`).join('') || '<p style="padding:20px;text-align:center">لا توجد نتائج مطابقة.</p>';
+
+                <div class="product-card"
+                    data-title="${escapeHtml(p.title)}"
+                    data-price="${Number(p.price)}"
+                    data-img="${escapeHtml(p.img)}">
+
+                    <div class="product-image-holder">
+
+                        <img
+                            src="${escapeHtml(p.img)}"
+                            alt="${escapeHtml(p.title)}">
+
+                    </div>
+
+                    <div class="product-info">
+
+                        <div class="product-title">
+                            ${escapeHtml(p.title)}
+                        </div>
+
+                        <div class="product-price">
+                            ${Number(p.price)} د.ل
+                        </div>
+
+                        <button class="btn-add-cart">
+                            إضافة للسلة 🛒
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `).join('') ||
+            '<p style="padding:20px;text-align:center">لا توجد نتائج مطابقة.</p>';
+
             initCartEvents();
+
             searchModal.classList.remove('open');
+
             overlay.classList.remove('active');
-            window.scrollTo({ top: document.getElementById('productsGrid').offsetTop - 80, behavior: 'smooth' });
+
+            window.scrollTo({
+                top: document.getElementById('productsGrid').offsetTop - 80,
+                behavior: 'smooth'
+            });
+
         });
+
+        // ==========================================
+        // Shop Events
+        // ==========================================
 
         shopNowBtn.addEventListener('click', () => {
+
             shopModalTitle.textContent = "✨ جميع تشكيلات المتجر";
+
             renderProducts(null);
+
             shopModal.classList.add('open');
+
             overlay.classList.add('active');
+
         });
+
         document.getElementById('menuAllShop').addEventListener('click', e => {
+
             e.preventDefault();
+
             sideMenu.classList.remove('open');
+
             shopModalTitle.textContent = "✨ جميع تشكيلات المتجر";
+
             renderProducts(null);
+
             shopModal.classList.add('open');
+
             overlay.classList.add('active');
+
         });
-        closeShopModal.addEventListener('click', () => { shopModal.classList.remove('open'); overlay.classList.remove('active'); });
+
+        closeShopModal.addEventListener('click', () => {
+
+            shopModal.classList.remove('open');
+
+            overlay.classList.remove('active');
+
+        });
+
+        // ==========================================
+        // Shipping Events
+        // ==========================================
 
         document.getElementById('menuShipping').addEventListener('click', e => {
-            e.preventDefault(); sideMenu.classList.remove('open');
-            shippingModal.classList.add('open'); overlay.classList.add('active');
+
+            e.preventDefault();
+
+            sideMenu.classList.remove('open');
+
+            shippingModal.classList.add('open');
+
+            overlay.classList.add('active');
+
         });
+
         document.getElementById('footerShipping').addEventListener('click', () => {
-            shippingModal.classList.add('open'); overlay.classList.add('active');
+
+            shippingModal.classList.add('open');
+
+            overlay.classList.add('active');
+
         });
-        closeShipping.addEventListener('click', () => { shippingModal.classList.remove('open'); overlay.classList.remove('active'); });
+
+        closeShipping.addEventListener('click', () => {
+
+            shippingModal.classList.remove('open');
+
+            overlay.classList.remove('active');
+
+        });
+
+        // ==========================================
+        // Contact Events
+        // ==========================================
+
         document.getElementById('menuContact').addEventListener('click', e => {
-            e.preventDefault(); sideMenu.classList.remove('open');
-            contactModal.classList.add('open'); overlay.classList.add('active');
+
+            e.preventDefault();
+
+            sideMenu.classList.remove('open');
+
+            contactModal.classList.add('open');
+
+            overlay.classList.add('active');
+
         });
+
         document.getElementById('footerContact').addEventListener('click', () => {
-            contactModal.classList.add('open'); overlay.classList.add('active');
+
+            contactModal.classList.add('open');
+
+            overlay.classList.add('active');
+
         });
-        closeContact.addEventListener('click', () => { contactModal.classList.remove('open'); overlay.classList.remove('active'); });
+
+        closeContact.addEventListener('click', () => {
+
+            contactModal.classList.remove('open');
+
+            overlay.classList.remove('active');
+
+        });
+
+        // ==========================================
+        // Home Event
+        // ==========================================
+
         document.getElementById('menuHome').addEventListener('click', e => {
-            e.preventDefault(); sideMenu.classList.remove('open'); overlay.classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            e.preventDefault();
+
+            sideMenu.classList.remove('open');
+
+            overlay.classList.remove('active');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
         });
+
+        // ==========================================
+        // Admin Login Modal
+        // ==========================================
 
         openAdminBtn.addEventListener('click', () => {
+
             sideMenu.classList.remove('open');
+
             authModal.classList.add('open');
+
             overlay.classList.add('active');
+
             adminPasswordInput.value = '';
+
             adminEmailInput.value = '';
+
             adminLoginMessage.textContent = '';
+
             adminEmailInput.focus();
+
         });
-        closeAuth.addEventListener('click', () => { authModal.classList.remove('open'); overlay.classList.remove('active'); });
+
+        closeAuth.addEventListener('click', () => {
+
+            authModal.classList.remove('open');
+
+            overlay.classList.remove('active');
+
+        });
+
+        // ==========================================
+        // Admin Authentication
+        // ==========================================
 
         async function adminLogin() {
-            const email = adminEmailInput.value.trim();
-            const password = adminPasswordInput.value;
-            adminLoginMessage.textContent = 'جارٍ التحقق من الحساب...';
-            submitPasswordBtn.disabled = true;
-            try {
-                const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-                if (error) throw error;
-                const { data: adminRecord, error: adminError } = await supabaseClient
-                    .from('admin_users').select('user_id').eq('user_id', data.user.id).maybeSingle();
-                if (adminError) throw adminError;
-                if (!adminRecord) {
-                    await supabaseClient.auth.signOut();
-                    throw new Error('هذا الحساب غير مخوّل لإدارة المتجر.');
-                }
-                currentAdmin = data.user;
-                adminLoginMessage.textContent = '';
-                authModal.classList.remove('open');
-                adminModal.classList.add('open');
-            } catch (error) {
-                adminLoginMessage.textContent = error.message || 'تعذر تسجيل الدخول. تحقق من البيانات.';
-            } finally {
-                submitPasswordBtn.disabled = false;
-            }
-        }
-        submitPasswordBtn.addEventListener('click', adminLogin);
-        adminPasswordInput.addEventListener('keydown', e => { if (e.key === 'Enter') adminLogin(); });
-        adminEmailInput.addEventListener('keydown', e => { if (e.key === 'Enter') adminPasswordInput.focus(); });
 
-        closeAdmin.addEventListener('click', () => { adminModal.classList.remove('open'); overlay.classList.remove('active'); });
-        cartToggle.addEventListener('click', () => { cartDrawer.classList.add('open'); overlay.classList.add('active'); });
-        closeCart.addEventListener('click', () => { cartDrawer.classList.remove('open'); overlay.classList.remove('active'); });
+            const email = adminEmailInput.value.trim();
+
+            const password = adminPasswordInput.value;
+
+            if (!email || !password) {
+
+                adminLoginMessage.textContent = 'يرجى إدخال البريد الإلكتروني وكلمة المرور.';
+
+                return;
+
+            }
+
+            adminLoginMessage.textContent = 'جارٍ التحقق من الحساب...';
+
+            submitPasswordBtn.disabled = true;
+
+            try {
+
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+
+                    email,
+
+                    password
+
+                });
+
+                if (error) throw error;
+
+                const { data: adminRecord, error: adminError } = await supabaseClient
+
+                    .from('admin_users')
+
+                    .select('user_id')
+
+                    .eq('user_id', data.user.id)
+
+                    .maybeSingle();
+
+                if (adminError) throw adminError;
+
+                if (!adminRecord) {
+
+                    await supabaseClient.auth.signOut();
+
+                    throw new Error('هذا الحساب غير مخوّل لإدارة المتجر.');
+
+                }
+
+                currentAdmin = data.user;
+
+                adminLoginMessage.textContent = '';
+
+                authModal.classList.remove('open');
+
+                adminModal.classList.add('open');
+
+            } catch (error) {
+
+                adminLoginMessage.textContent =
+                    error.message || 'تعذر تسجيل الدخول. تحقق من البيانات.';
+
+            } finally {
+
+                submitPasswordBtn.disabled = false;
+
+            }
+
+        }
+
+        submitPasswordBtn.addEventListener('click', adminLogin);
+
+        adminPasswordInput.addEventListener('keydown', e => {
+
+            if (e.key === 'Enter') adminLogin();
+
+        });
+
+        adminEmailInput.addEventListener('keydown', e => {
+
+            if (e.key === 'Enter') adminPasswordInput.focus();
+
+        });
+
+        closeAdmin.addEventListener('click', () => {
+
+            adminModal.classList.remove('open');
+
+            overlay.classList.remove('active');
+
+        });
+
+        // ==========================================
+        // Cart Drawer Events
+        // ==========================================
+
+        cartToggle.addEventListener('click', () => {
+
+            cartDrawer.classList.add('open');
+
+            overlay.classList.add('active');
+
+        });
+
+        closeCart.addEventListener('click', () => {
+
+            cartDrawer.classList.remove('open');
+
+            overlay.classList.remove('active');
+
+        });
+
+        // ==========================================
+        // Overlay Events
+        // ==========================================
 
         overlay.addEventListener('click', () => {
+
             sideMenu.classList.remove('open');
+
             searchModal.classList.remove('open');
+
             authModal.classList.remove('open');
+
             adminModal.classList.remove('open');
+
             shopModal.classList.remove('open');
+
             shippingModal.classList.remove('open');
+
             contactModal.classList.remove('open');
+
             cartDrawer.classList.remove('open');
+
             overlay.classList.remove('active');
+
         });
+
+        // ==========================================
+        // Save New Product
+        // ==========================================
 
         saveProductBtn.addEventListener('click', async () => {
+
             if (!currentAdmin) {
+
                 alert('يرجى تسجيل الدخول بحساب المدير أولاً.');
+
                 return;
+
             }
+
             const category = document.getElementById('newCategory').value;
+
             const title = document.getElementById('newTitle').value.trim();
+
             const price = Number(document.getElementById('newPrice').value);
-            const img = document.getElementById('newImg').value.trim();
 
-            if (!title || !Number.isFinite(price) || price < 0 || !img) {
-                alert('الرجاء تعبئة جميع الحقول بشكل صحيح.');
+            const imgFile = document.getElementById('newImgFile').files[0];
+
+            // Validate Inputs
+
+            if (
+                !title ||
+                !document.getElementById('newPrice').value.trim() ||
+                !Number.isFinite(price) ||
+                price < 0 ||
+                !imgFile
+            ) {
+
+                alert('الرجاء تعبئة جميع الحقول واختيار صورة المنتج.');
+
                 return;
-            }
-            saveProductBtn.disabled = true;
-            try {
-                const { data: categoryRow, error: categoryError } = await supabaseClient
-                    .from('categories').select('id').eq('name', category).maybeSingle();
-                if (categoryError) throw categoryError;
-                if (!categoryRow) throw new Error('القسم غير موجود في قاعدة البيانات. أكمل إعداد التصنيفات أولاً.');
 
-                const { error } = await supabaseClient.from('products').insert({
-                    name: title, price, image_url: img, category_id: categoryRow.id,
-                    stock: 0, is_active: true
-                });
+            }
+
+            saveProductBtn.disabled = true;
+
+            try {
+
+                // Get Category ID
+
+                const { data: categoryRow, error: categoryError } = await supabaseClient
+
+                    .from('categories')
+
+                    .select('id')
+
+                    .eq('name', category)
+
+                    .maybeSingle();
+
+                if (categoryError) throw categoryError;
+
+                if (!categoryRow) {
+
+                    throw new Error(
+                        'القسم غير موجود في قاعدة البيانات. أكمل إعداد التصنيفات أولاً.'
+                    );
+
+                }
+
+                // Generate Unique Image File Name
+
+                const fileExt = imgFile.name.split('.').pop();
+
+                const fileName =
+                    `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`;
+
+                // Upload Image To Supabase Storage
+
+                const { error: uploadError } = await supabaseClient.storage
+
+                    .from('product-images')
+
+                    .upload(fileName, imgFile, {
+
+                        cacheControl: '3600',
+
+                        upsert: false
+
+                    });
+
+                if (uploadError) throw uploadError;
+
+                // Get Public Image URL
+
+                const { data: publicUrlData } = supabaseClient.storage
+
+                    .from('product-images')
+
+                    .getPublicUrl(fileName);
+
+                const imageUrl = publicUrlData.publicUrl;
+
+                // Save Product In Database
+
+                const { error } = await supabaseClient
+
+                    .from('products')
+
+                    .insert({
+
+                        name: title,
+
+                        price: price,
+
+                        image_url: imageUrl,
+
+                        category_id: categoryRow.id,
+
+                        stock: 0,
+
+                        is_active: true
+
+                    });
+
                 if (error) throw error;
 
+                // Reload Products
+
                 await loadProductsFromSupabase();
+
+                // Clear Form
+
                 document.getElementById('newTitle').value = '';
+
                 document.getElementById('newPrice').value = '';
-                document.getElementById('newImg').value = '';
+
+                document.getElementById('newImgFile').value = '';
+
+                // Close Admin Modal
+
                 adminModal.classList.remove('open');
+
                 overlay.classList.remove('active');
+
                 alert('تم حفظ المنتج في قاعدة البيانات بنجاح.');
+
             } catch (error) {
-                alert('تعذر حفظ المنتج: ' + (error.message || 'خطأ غير معروف'));
+
+                console.error('Product save error:', error);
+
+                alert(
+                    'تعذر حفظ المنتج: ' +
+                    (error.message || 'خطأ غير معروف')
+                );
+
             } finally {
+
                 saveProductBtn.disabled = false;
+
             }
+
         });
+
+        // ==========================================
+        // Cart Events
+        // ==========================================
 
         function initCartEvents() {
+
             document.querySelectorAll('.btn-add-cart').forEach(button => {
+
                 button.onclick = e => {
+
                     const card = e.target.closest('.product-card');
+
                     cart.push({
+
                         title: card.getAttribute('data-title'),
+
                         price: Number(card.getAttribute('data-price')),
+
                         img: card.getAttribute('data-img')
+
                     });
+
                     updateCartUI();
+
                     shopModal.classList.remove('open');
+
                     cartDrawer.classList.add('open');
+
                     overlay.classList.add('active');
+
                 };
+
             });
+
         }
+
+        // ==========================================
+        // Update Cart UI
+        // ==========================================
 
         function updateCartUI() {
+
             const cartBadge = document.getElementById('cartBadge');
-            const cartItemsContainer = document.getElementById('cartItemsContainer');
-            const cartTotalPrice = document.getElementById('cartTotalPrice');
+
+            const cartItemsContainer =
+                document.getElementById('cartItemsContainer');
+
+            const cartTotalPrice =
+                document.getElementById('cartTotalPrice');
+
             cartBadge.textContent = cart.length;
+
             if (!cart.length) {
-                cartItemsContainer.innerHTML = '<p style="text-align:center;color:#888;font-size:13px;margin-top:20px;">السلة فارغة حالياً</p>';
+
+                cartItemsContainer.innerHTML =
+                    '<p style="text-align:center;color:#888;font-size:13px;margin-top:20px;">السلة فارغة حالياً</p>';
+
                 cartTotalPrice.textContent = '0 د.ل';
+
                 return;
+
             }
+
             let total = 0;
+
             cartItemsContainer.innerHTML = cart.map((item, index) => {
+
                 total += item.price;
-                return `<div class="cart-item"><img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.title)}">
-                    <div class="cart-item-details"><div class="cart-item-title">${escapeHtml(item.title)}</div>
-                    <div class="cart-item-price">${item.price} د.ل</div></div>
-                    <button class="remove-item" onclick="removeItem(${index})">✕</button></div>`;
+
+                return `
+
+                    <div class="cart-item">
+
+                        <img
+                            src="${escapeHtml(item.img)}"
+                            alt="${escapeHtml(item.title)}">
+
+                        <div class="cart-item-details">
+
+                            <div class="cart-item-title">
+                                ${escapeHtml(item.title)}
+                            </div>
+
+                            <div class="cart-item-price">
+                                ${item.price} د.ل
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="remove-item"
+                            onclick="removeItem(${index})">
+                            ✕
+                        </button>
+
+                    </div>
+
+                `;
+
             }).join('');
+
             cartTotalPrice.textContent = total + ' د.ل';
+
         }
-        window.removeItem = index => { cart.splice(index, 1); updateCartUI(); };
+
+        // ==========================================
+        // Remove Item From Cart
+        // ==========================================
+
+        window.removeItem = index => {
+
+            cart.splice(index, 1);
+
+            updateCartUI();
+
+        };
+
+        // ==========================================
+        // WhatsApp Checkout
+        // ==========================================
 
         document.getElementById('checkoutWhatsapp').addEventListener('click', () => {
-            if (!cart.length) { alert('سلتك فارغة!'); return; }
-            let message = 'مرحباً متجر Elaf accessories، أريد إتمام الطلب التالي:\\n';
+
+            if (!cart.length) {
+
+                alert('سلتك فارغة!');
+
+                return;
+
+            }
+
+            let message =
+                'مرحباً متجر Elaf accessories، أريد إتمام الطلب التالي:\n';
+
             let total = 0;
+
             cart.forEach((item, i) => {
-                message += `${i + 1}. ${item.title} - ${item.price} د.ل\\n`;
+
+                message +=
+                    `${i + 1}. ${item.title} - ${item.price} د.ل\n`;
+
                 total += item.price;
+
             });
-            message += `\\nالمجموع الكلي: ${total} د.ل`;
-            window.open(`https://api.whatsapp.com/send?phone=218910836521&text=${encodeURIComponent(message)}`, '_blank');
+
+            message += `\nالمجموع الكلي: ${total} د.ل`;
+
+            window.open(
+                `https://api.whatsapp.com/send?phone=218910836521&text=${encodeURIComponent(message)}`,
+                '_blank'
+            );
+
         });
 
+        // ==========================================
+        // Initialize Store
+        // ==========================================
+
         updateCartUI();
+
         renderProducts(null);
+
         loadProductsFromSupabase();
 
     </script>
+
 </body>
 </html>
