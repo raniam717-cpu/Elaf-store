@@ -5,124 +5,208 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#c5a46d">
+
 <title>Elaf Accessories | تحميل التطبيق</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;
- font-family:Tahoma,Arial,sans-serif;
- background:linear-gradient(145deg,#f8f1e5,#e9d7b6);
- color:#44351f;
- min-height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- padding:25px 15px;
+* {
+  box-sizing: border-box;
 }
-.card{
- width:100%;max-width:440px;
- background:#fffdf9;
- border-radius:26px;
- padding:32px 22px;
- text-align:center;
- box-shadow:0 15px 50px #8a6b3a25;
+
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: linear-gradient(145deg, #f8f1e5, #e9d7b6);
+  color: #44351f;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 15px;
 }
-.logo{
- width:105px;height:105px;
- margin:0 auto 18px;
- border-radius:28px;
- background:linear-gradient(145deg,#f5e8c9,#d2ad69);
- border:3px solid #b18a4d;
- display:flex;align-items:center;
- justify-content:center;
- color:white;
- font-family:Georgia,serif;
- font-size:47px;
- box-shadow:0 7px 18px #b18a4d40;
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: #fffdf9;
+  border-radius: 26px;
+  padding: 32px 22px;
+  text-align: center;
+  box-shadow: 0 15px 50px #8a6b3a25;
 }
-h1{font-size:27px;margin:10px 0;color:#98713c}
-.subtitle{color:#88795f;line-height:1.9;font-size:14px}
-.tag{
- display:inline-block;
- background:#f4ead7;
- color:#997541;
- border-radius:30px;
- padding:8px 16px;
- font-size:12px;
- margin:12px 0;
+
+/* الشعار الأصلي */
+.logo-image {
+  width: 105px;
+  height: 105px;
+  margin: 0 auto 18px;
+  border-radius: 28px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 7px 18px #b18a4d40;
+  border: 3px solid #b18a4d;
+  background: #fff;
 }
-.download{
- display:block;
- text-decoration:none;
- color:white;
- background:linear-gradient(100deg,#b28a4c,#d4b474);
- padding:17px;
- border-radius:15px;
- font-weight:bold;
- font-size:18px;
- margin:22px 0 12px;
- box-shadow:0 6px 15px #b28a4c35;
+
+h1 {
+  font-size: 27px;
+  margin: 10px 0;
+  color: #98713c;
 }
-.download:active{transform:scale(.98)}
-.info{font-size:12px;color:#94866f}
-hr{border:0;border-top:1px solid #eee4d3;margin:25px 0}
-.steps{text-align:right;line-height:2.2;font-size:14px}
-.steps h3{text-align:center;color:#98713c}
-.step{
- background:#faf5ec;
- border-radius:12px;
- padding:10px 13px;
- margin:9px 0;
+
+.subtitle {
+  color: #88795f;
+  line-height: 1.9;
+  font-size: 14px;
 }
-.store{
- display:block;
- color:#98713c;
- text-decoration:none;
- padding:13px;
- border:1px solid #d7c29f;
- border-radius:13px;
- margin-top:20px;
+
+.tag {
+  display: inline-block;
+  background: #f4ead7;
+  color: #997541;
+  border-radius: 30px;
+  padding: 8px 16px;
+  font-size: 12px;
+  margin: 12px 0;
 }
-footer{font-size:11px;color:#a99a80;margin-top:25px}
+
+.download {
+  display: block;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(100deg, #b28a4c, #d4b474);
+  padding: 17px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 22px 0 12px;
+  box-shadow: 0 6px 15px #b28a4c35;
+}
+
+.download:active {
+  transform: scale(.98);
+}
+
+.info {
+  font-size: 12px;
+  color: #94866f;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee4d3;
+  margin: 25px 0;
+}
+
+.steps {
+  text-align: right;
+  line-height: 2.2;
+  font-size: 14px;
+}
+
+.steps h3 {
+  text-align: center;
+  color: #98713c;
+}
+
+.step {
+  background: #faf5ec;
+  border-radius: 12px;
+  padding: 10px 13px;
+  margin: 9px 0;
+}
+
+.store {
+  display: block;
+  color: #98713c;
+  text-decoration: none;
+  padding: 13px;
+  border: 1px solid #d7c29f;
+  border-radius: 13px;
+  margin-top: 20px;
+}
+
+footer {
+  font-size: 11px;
+  color: #a99a80;
+  margin-top: 25px;
+}
 </style>
 </head>
+
 <body>
+
 <main class="card">
- <div class="logo">E</div>
 
- <h1>Elaf Accessories</h1>
- <p class="subtitle">
-  أناقتك تبدأ من التفاصيل<br>
-  حمّلي تطبيقنا واكتشفي أحدث تشكيلات الإكسسوارات
- </p>
+  <!-- شعار Elaf Accessories الأصلي -->
+  <img
+    src="./elaf-logo.png"
+    alt="Elaf Accessories Logo"
+    class="logo-image"
+  >
 
- <span class="tag">التطبيق الرسمي لأندرويد</span>
+  <h1>Elaf Accessories</h1>
 
- <a class="download"
- href="https://github.com/raniam717-cpu/Elaf-android/releases/download/v1.0.0/Elaf-Accessories-v1.0.0.apk">
-  ⬇ تحميل التطبيق الآن
- </a>
+  <p class="subtitle">
+    أناقتك تبدأ من التفاصيل<br>
+    حمّلي تطبيقنا واكتشفي أحدث تشكيلات الإكسسوارات
+  </p>
 
- <div class="info">الإصدار 1.0.0 · الحجم حوالي 3 MB · Android</div>
+  <span class="tag">
+    التطبيق الرسمي لأندرويد
+  </span>
 
- <hr>
+  <a
+    class="download"
+    href="https://github.com/raniam717-cpu/Elaf-android/releases/download/v1.0.0/Elaf-Accessories-v1.0.0.apk"
+  >
+    ⬇ تحميل التطبيق الآن
+  </a>
 
- <section class="steps">
-  <h3>كيفية تثبيت التطبيق</h3>
-  <div class="step">1. اضغطي على زر تحميل التطبيق.</div>
-  <div class="step">2. انتظري حتى يكتمل تنزيل الملف.</div>
-  <div class="step">3. افتحي ملف APK من التنزيلات.</div>
-  <div class="step">4. وافقي على التثبيت إذا طلب الهاتف ذلك.</div>
-  <div class="step">5. افتحي التطبيق واستمتعي بالتسوق.</div>
- </section>
+  <div class="info">
+    الإصدار 1.0.0 · الحجم حوالي 3 MB · Android
+  </div>
 
- <a class="store" href="https://raniam717-cpu.github.io/Elaf-store/">
-  زيارة المتجر الإلكتروني
- </a>
+  <hr>
 
- <footer>
-  © 2026 Elaf Accessories · جميع الحقوق محفوظة
- </footer>
+  <section class="steps">
+
+    <h3>كيفية تثبيت التطبيق</h3>
+
+    <div class="step">
+      1. اضغطي على زر تحميل التطبيق.
+    </div>
+
+    <div class="step">
+      2. انتظري حتى يكتمل تنزيل الملف.
+    </div>
+
+    <div class="step">
+      3. افتحي ملف APK من التنزيلات.
+    </div>
+
+    <div class="step">
+      4. وافقي على التثبيت إذا طلب الهاتف ذلك.
+    </div>
+
+    <div class="step">
+      5. افتحي التطبيق واستمتعي بالتسوق.
+    </div>
+
+  </section>
+
+  <a
+    class="store"
+    href="https://raniam717-cpu.github.io/Elaf-store/"
+  >
+    زيارة المتجر الإلكتروني
+  </a>
+
+  <footer>
+    © 2026 Elaf Accessories · جميع الحقوق محفوظة
+  </footer>
+
 </main>
+
 </body>
 </html>
